@@ -4,9 +4,8 @@
     let helloString = '';
 
     onMount(() => {
-        // Calculate the number of repetitions needed to fill the screen
         const hello = 'hello ';
-        const repetitions = Math.ceil(window.innerWidth * window.innerHeight / (hello.length * 25)); // Adjust the multiplier as needed
+        const repetitions = Math.ceil(window.innerWidth * window.innerHeight / (hello.length * 25));
         helloString = hello.repeat(repetitions).trim();
     });
 </script>
