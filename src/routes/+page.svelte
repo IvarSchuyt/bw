@@ -10,6 +10,24 @@
     });
 </script>
 
+<svg>
+    <defs>
+        <filter id="distortLow">
+            <feTurbulence baseFrequency="0.01 0.01" numOctaves="1" result="noise"  />
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="5" xChannelSelector="R" yChannelSelector="R">
+        </filter>
+    </defs>
+</svg>
+
+<svg>
+    <defs>
+        <filter id="distort">
+            <feTurbulence baseFrequency="0.01 0.01" numOctaves="1" result="noise"  />
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="10" xChannelSelector="R" yChannelSelector="R">
+        </filter>
+    </defs>
+</svg>
+
 <main data-content={helloString}>
     <button>button 1</button>
     <button>button 2</button>
@@ -18,6 +36,11 @@
 
 
 <style>
+
+    svg{
+        display: none;
+    }
+
     main {
         min-height: 100vh;
         min-width: 100vw;
@@ -28,6 +51,7 @@
         height: 100%;
         width: 100%;
         gap: 5rem 0;
+        filter: url(#distortLow);
     }
 
     main::before {
@@ -51,5 +75,7 @@
 
     button{
         padding: 2rem 10rem;
+        filter: url(#distort);
     }
+
 </style>
