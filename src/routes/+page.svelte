@@ -2,11 +2,30 @@
     import { onMount } from 'svelte';
 
     let helloString = '';
+    let isHello = true;
+
+    function updateString() {
+        const word = 'hello ';
+        const repetitions = Math.ceil(window.innerWidth * window.innerHeight / (word.length * 25));
+        helloString = word.repeat(repetitions).trim();
+        if (!isHello) {
+            const helloIndices = [];
+            let index = helloString.indexOf('hello');
+            while (index !== -1) {
+                helloIndices.push(index);
+                index = helloString.indexOf('hello', index + 1);
+            }
+            if (helloIndices.length > 0) {
+                const randomIndex = helloIndices[Math.floor(Math.random() * helloIndices.length)];
+                helloString = helloString.substring(0, randomIndex) + 'goodbye' + helloString.substring(randomIndex + 'hello'.length);
+            }
+        }
+        isHello = !isHello;
+    }
 
     onMount(() => {
-        const hello = 'hello ';
-        const repetitions = Math.ceil(window.innerWidth * window.innerHeight / (hello.length * 25));
-        helloString = hello.repeat(repetitions).trim();
+        updateString();
+        setInterval(updateString, 2000);
     });
 </script>
 
@@ -29,9 +48,7 @@
 </svg>
 
 <main data-content={helloString}>
-    <button>button 1</button>
-    <button>button 2</button>
-    <button>button 3</button>
+    <a href="/home">enter</a>
 </main>
 
 
@@ -73,9 +90,14 @@
         filter: invert(1);
     }
 
-    button{
+    a{
         padding: 2rem 10rem;
         filter: url(#distort);
+        font-size: 2rem;
+        font-family: "Special Elite", serif;
+        text-decoration: none;
+        background-color: white;
+        color: black;
     }
 
 </style>
