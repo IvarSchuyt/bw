@@ -17,7 +17,7 @@
             }
             if (helloIndices.length > 0) {
                 const randomIndex = helloIndices[Math.floor(Math.random() * helloIndices.length)];
-                helloString = helloString.substring(0, randomIndex) + 'goodbye' + helloString.substring(randomIndex + 'hello'.length);
+                helloString = helloString.substring(0, randomIndex) + 'hell' + helloString.substring(randomIndex + 'hello'.length);
             }
         }
         isHello = !isHello;
@@ -32,7 +32,7 @@
 <svg>
     <defs>
         <filter id="distortLow">
-            <feTurbulence baseFrequency="0.01 0.01" numOctaves="1" result="noise"  />
+            <feTurbulence baseFrequency="0.01 0.01" numOctaves="1" result="noise" />
             <feDisplacementMap in="SourceGraphic" in2="noise" scale="5" xChannelSelector="R" yChannelSelector="R">
         </filter>
     </defs>
@@ -98,6 +98,27 @@
         text-decoration: none;
         background-color: white;
         color: black;
+    }
+
+    a:hover{
+        animation-name: shake;
+        animation-duration: 50ms;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+    }
+
+    @keyframes shake{
+        0%{
+            transform: translate(0.1rem, -0.1rem);
+        }
+
+        50%{
+            transform: translate(-0.1rem, 0.1rem);
+        }
+
+        100%{
+            transform: translate(0.1rem, -0.1rem);
+        }
     }
 
 </style>
